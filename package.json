@@ -1,0 +1,14 @@
+{
+  "name": "electron-ts-playground",
+  "version": "0.1.0",
+  "description": "A playground for electron and typescript.",
+  "main": "index.js",
+  "repository": "https://MasatoMakino@github.com/MasatoMakino/electron-ts-playground.git",
+  "author": "MasatoMakino <unagiinu.g@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.15.0",
+    "yarn": ">=1.22.5",
+    "npm": "please use yarn in this project."
+  }
+}
