@@ -1,2 +1,2 @@
 # electron-ts-playground
-A playground for electron and typescript.
+A playground for Electron and TypeScript.
