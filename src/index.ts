@@ -15,7 +15,7 @@ const createWindow = (): void => {
     width: 800,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
-      contextIsolation:true
+      contextIsolation: true,
     },
   });
 
@@ -24,6 +24,13 @@ const createWindow = (): void => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  mainWindow.on("ready-to-show", () => {
+    mainWindow.webContents.send(
+      "hello-to-renderer",
+      "render is ready-to-show, hello-from-main!"
+    );
+  });
 };
 
 // This method will be called when Electron has finished
@@ -51,6 +58,7 @@ app.on("activate", () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-ipcMain.handle("message_test", (event, ...args) => {
-  console.log(args[0], args[1]);
+ipcMain.handle("hello-to-main", (event, ...args) => {
+  console.log("get hello from renderer");
+  return "thanks-from-main!";
 });

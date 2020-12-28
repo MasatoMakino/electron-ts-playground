@@ -28,6 +28,24 @@
 
 import "../src/index.css";
 
+// @ts-ignore
+const api = window.api;
+
 console.log(
   '👋 This message is being logged by "renderer.js", included via webpack'
 );
+
+/**
+ * メインスレッドからのデータ受信時コールバック関数
+ */
+api.sendToRendererHello((arg: any) => {
+  console.log(arg);
+});
+
+const send = async () => {
+  console.log( "send to main!");
+  const result = await api.sendToMainHello();
+  console.log("result : ",result);
+};
+send();
+

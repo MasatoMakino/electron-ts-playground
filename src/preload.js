@@ -2,12 +2,12 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("api", {
   sendToMainHello: () => {
-    ipcRenderer
+    return ipcRenderer
       .invoke("hello-to-main")
       .then((result) => result)
       .catch((e) => console.log(e));
   },
-  sendToRendererHello: () => {
+  sendToRendererHello: (listener) => {
     ipcRenderer.on("hello-to-renderer", (event, arg) => listener(arg));
   },
 });
