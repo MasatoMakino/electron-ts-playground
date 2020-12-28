@@ -1,4 +1,5 @@
 import { app, BrowserWindow, ipcMain } from "electron";
+import { HelloToMainMessage, IpcChannelType } from "./IpcChannelType";
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
@@ -27,7 +28,7 @@ const createWindow = (): void => {
 
   mainWindow.on("ready-to-show", () => {
     mainWindow.webContents.send(
-      "hello-to-renderer",
+      IpcChannelType.HELLO_TO_RENDERER,
       "render is ready-to-show, hello-from-main!"
     );
   });
@@ -58,7 +59,11 @@ app.on("activate", () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-ipcMain.handle("hello-to-main", (event, ...args) => {
-  console.log("get hello from renderer");
-  return "thanks-from-main!";
-});
+
+ipcMain.handle(
+  IpcChannelType.HELLO_TO_MAIN,
+  (event, message: HelloToMainMessage) => {
+    console.log(message);
+    return "thanks-from-main!";
+  }
+);

@@ -3,7 +3,7 @@ const { contextBridge, ipcRenderer } = require("electron");
 contextBridge.exposeInMainWorld("api", {
   sendToMainHello: () => {
     return ipcRenderer
-      .invoke("hello-to-main")
+      .invoke("hello-to-main", { message: "hello to main, from renderer" })
       .then((result) => result)
       .catch((e) => console.log(e));
   },
