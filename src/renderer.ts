@@ -43,9 +43,8 @@ api.sendToRendererHello((arg: any) => {
 });
 
 const send = async () => {
-  console.log( "send to main!");
+  console.log("send to main!");
   const result = await api.sendToMainHello();
-  console.log("result : ",result);
+  console.log("result :", result);
 };
 send();
-

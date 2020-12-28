@@ -1,3 +1,5 @@
+import { IpcRendererEvent } from "electron";
+
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("api", {
@@ -8,7 +10,7 @@ contextBridge.exposeInMainWorld("api", {
       .catch((e: any) => console.log(e));
   },
   sendToRendererHello: (listener: (arg0: any) => any) => {
-    ipcRenderer.on("hello-to-renderer", (event: any, arg: any) =>
+    ipcRenderer.on("hello-to-renderer", (event: IpcRendererEvent, arg: any) =>
       listener(arg)
     );
   },
