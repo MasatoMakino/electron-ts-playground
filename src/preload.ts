@@ -4,10 +4,12 @@ contextBridge.exposeInMainWorld("api", {
   sendToMainHello: () => {
     return ipcRenderer
       .invoke("hello-to-main", { message: "hello to main, from renderer" })
-      .then((result) => result)
-      .catch((e) => console.log(e));
+      .then((result: any) => result)
+      .catch((e: any) => console.log(e));
   },
-  sendToRendererHello: (listener) => {
-    ipcRenderer.on("hello-to-renderer", (event, arg) => listener(arg));
+  sendToRendererHello: (listener: (arg0: any) => any) => {
+    ipcRenderer.on("hello-to-renderer", (event: any, arg: any) =>
+      listener(arg)
+    );
   },
 });

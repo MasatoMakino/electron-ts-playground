@@ -10,7 +10,8 @@
     "make": "electron-forge make",
     "make_win32": "electron-forge make --platform win32",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts ."
+    "lint": "eslint --ext .ts .",
+    "preload": "tsc ./src/preload.ts"
   },
   "husky": {
     "hooks": {
