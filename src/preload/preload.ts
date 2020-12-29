@@ -1,11 +1,12 @@
 import { IpcRendererEvent } from "electron";
 
 const { contextBridge, ipcRenderer } = require("electron");
+import {IpcChannelType} from "./IpcChannelType";
 
 contextBridge.exposeInMainWorld("api", {
   sendToMainHello: () => {
     return ipcRenderer
-      .invoke("hello-to-main", { message: "hello to main, from renderer" })
+      .invoke(IpcChannelType.HELLO_TO_MAIN, { message: "hello to main, from renderer" })
       .then((result: any) => result)
       .catch((e: any) => console.log(e));
   },

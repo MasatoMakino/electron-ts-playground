@@ -11,7 +11,7 @@
     "make_win32": "electron-forge make --platform win32",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts .",
-    "preload": "tsc ./src/preload.ts"
+    "preload": "tsc src/preload/preload.ts"
   },
   "husky": {
     "hooks": {
@@ -72,7 +72,7 @@
                   "js": "./src/renderer.ts",
                   "name": "main_window",
                   "preload": {
-                    "js": "./src/preload.js"
+                    "js": "./src/preload/preload.js"
                   }
                 }
               ]
