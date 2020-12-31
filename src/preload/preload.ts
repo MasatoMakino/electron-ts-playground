@@ -2,6 +2,8 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from "electron";
 import { IpcChannelType } from "./IpcChannelType";
 
 export class ContextBridgeApi {
+  public static readonly API_KEY = "api";
+
   constructor() {}
 
   public sendToMainHello = () => {
@@ -13,12 +15,17 @@ export class ContextBridgeApi {
       .catch((e: Error) => console.log(e));
   };
 
-  public sendToRendererHello = (listener: (arg0: any) => any) => {
+  public onSendToRendererHello = (rendererListener: (arg0: any) => void) => {
     ipcRenderer.on(
       IpcChannelType.HELLO_TO_RENDERER,
-      (event: IpcRendererEvent, arg: any) => listener(arg)
+      (event: IpcRendererEvent, arg: any) => {
+        rendererListener(arg);
+      }
     );
   };
 }
 
-contextBridge.exposeInMainWorld("api", new ContextBridgeApi());
+contextBridge.exposeInMainWorld(
+  ContextBridgeApi.API_KEY,
+  new ContextBridgeApi()
+);

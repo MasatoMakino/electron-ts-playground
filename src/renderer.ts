@@ -27,9 +27,10 @@
  */
 
 import "../src/index.css";
+import { ContextBridgeApi } from "./preload/preload";
 
 // @ts-ignore
-const api = window.api;
+const api: ContextBridgeApi = window.api;
 
 console.log(
   '👋 This message is being logged by "renderer.js", included via webpack'
@@ -38,7 +39,7 @@ console.log(
 /**
  * メインスレッドからのデータ受信時コールバック関数
  */
-api.sendToRendererHello((arg: any) => {
+api.onSendToRendererHello((arg: any) => {
   console.log(arg);
 });
 
