@@ -1,5 +1,4 @@
-import { IpcRendererEvent } from "electron";
-const { contextBridge, ipcRenderer } = require("electron");
+import { contextBridge, ipcRenderer, IpcRendererEvent } from "electron";
 import { IpcChannelType } from "./IpcChannelType";
 
 export class ContextBridgeApi {
