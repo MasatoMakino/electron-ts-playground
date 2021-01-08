@@ -6,7 +6,7 @@ export class ContextBridgeApi {
 
   constructor() {}
 
-  public sendToMainHello = () => {
+  public sendToMainHello = (): Promise<string | void> => {
     return ipcRenderer
       .invoke(IpcChannelType.HELLO_TO_MAIN, {
         message: "hello to main, from renderer",
@@ -15,10 +15,14 @@ export class ContextBridgeApi {
       .catch((e: Error) => console.log(e));
   };
 
-  public onSendToRendererHello = (rendererListener: (arg0: any) => void) => {
+  /**
+   *
+   * @param rendererListener
+   */
+  public onSendToRendererHello = (rendererListener: (arg0: string) => void) => {
     ipcRenderer.on(
       IpcChannelType.HELLO_TO_RENDERER,
-      (event: IpcRendererEvent, arg: any) => {
+      (event: IpcRendererEvent, arg: string) => {
         rendererListener(arg);
       }
     );

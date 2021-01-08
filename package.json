@@ -5,14 +5,12 @@
   "description": "A playground for electron and typescript.",
   "main": ".webpack/main",
   "scripts": {
-    "start": "yarn preload:watch & electron-forge start",
-    "package": "yarn preload && electron-forge package",
-    "make": "yarn preload && electron-forge make",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
     "make_win32": "electron-forge make --platform win32",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts .",
-    "preload": "tsc src/preload/preload.ts",
-    "preload:watch": "yarn preload -- -w"
+    "lint": "eslint --ext .ts ."
   },
   "husky": {
     "hooks": {
@@ -73,7 +71,7 @@
                   "js": "./src/renderer.ts",
                   "name": "main_window",
                   "preload": {
-                    "js": "./src/preload/preload.js"
+                    "js": "./src/preload/preload.ts"
                   }
                 }
               ]

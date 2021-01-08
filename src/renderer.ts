@@ -39,7 +39,7 @@ console.log(
 /**
  * メインスレッドからのデータ受信時コールバック関数
  */
-api.onSendToRendererHello((arg: any) => {
+api.onSendToRendererHello((arg: string) => {
   console.log(arg);
 });
 
