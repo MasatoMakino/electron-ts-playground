@@ -26,7 +26,7 @@
  * ```
  */
 
-import "../src/index.css";
+import "../src/index.scss";
 import { ContextBridgeApi } from "./preload/preload";
 
 // @ts-ignore
