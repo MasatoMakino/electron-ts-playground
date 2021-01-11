@@ -1,9 +1,6 @@
 const rules = require("./webpack.rules");
 const plugins = require("./webpack.plugins");
-
-const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const assets = ["img"]; // asset directories
 
 rules.push(
   {
@@ -30,7 +27,7 @@ plugins.push(
     ],
   })
 );
-console.log(plugins);
+
 module.exports = {
   module: {
     rules,
