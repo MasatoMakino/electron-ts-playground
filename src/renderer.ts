@@ -26,10 +26,15 @@
  * ```
  */
 
+declare global {
+  interface Window {
+    api: ContextBridgeApi;
+  }
+}
+
 import "../src/index.scss";
 import { ContextBridgeApi } from "./preload/preload";
 
-// @ts-ignore
 const api: ContextBridgeApi = window.api;
 
 console.log(
@@ -49,7 +54,3 @@ const send = async () => {
   console.log("result :", result);
 };
 send();
-
-
-
-
